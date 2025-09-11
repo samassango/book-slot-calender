@@ -1,0 +1,176 @@
+'use client'
+
+import { useEffect, useState } from "react";
+import {
+    Calendar,
+    dateFnsLocalizer,
+    Event,
+    SlotInfo,
+    Views,
+} from "react-big-calendar";
+import { format, parse, startOfWeek, getDay } from "date-fns"
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import { enUS } from "date-fns/locale";
+
+import { createClient } from "@/lib/supabase/client";
+
+import AppointmentDialog from "./AppointmentDialog";
+import { useParams } from 'next/navigation';
+
+const locales = { "en-US": enUS };
+const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales,
+});
+
+type Appointment = Event;
+
+const BookingCalendar = () => {
+    const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [slotInfo, setSlotInfo] = useState<SlotInfo>()
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [selectedAppointment, setSelectedAppointment] = useState<any | null>(null)
+    const params = useParams()
+    let userId = params.userid
+
+    const availableSlots: Event[] = [
+        {
+            title: "Available",
+            start: new Date(2025, 7, 3, 9, 0),
+            end: new Date(2025, 7, 3, 10, 0),
+            allDay: false,
+        },
+        {
+            title: "Available",
+            start: new Date(2025, 7, 3, 11, 0),
+            end: new Date(2025, 7, 3, 12, 0),
+            allDay: false,
+        },
+        // Add more slots as needed
+    ];
+
+    const allEvents = [...availableSlots, ...appointments];
+
+    const createAppointment = async (inputData: any,) => {
+        const supabase = createClient();
+        // console.log({inputData})
+        try {
+            const { data, error: dataError } = await supabase
+                .from('appointments')
+                .insert([{
+                    fullname: inputData.fullname,
+                    email: inputData.email,
+                    title: inputData.title,
+                    contactno: inputData.contact,
+                    description: inputData.description,
+                    allday: inputData.allDay,
+                    start_date: new Date(inputData.startDate),
+                    end_date: new Date(inputData.endDate),
+                    userId: userId
+                }]);
+            console.log({ data })
+            if (dataError) throw dataError;
+        } catch (error: unknown) {
+            setError(error instanceof Error ? error.message : "An error occurred");
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+  
+    const handleSubmitUpdate = async (dataInputs: any) => {
+        const supabase = createClient();
+        try {
+            const { data, error } = await supabase
+                .from('appointments')
+                .update({
+                    fullname: dataInputs.fullname,
+                    email: dataInputs.email,
+                    title: dataInputs.title,
+                    contactno: dataInputs.contact,
+                    description: dataInputs.description,
+                    is_available: false
+                })
+                .eq('id', selectedAppointment.id)
+                .select(); // Optional: returns the updated record
+
+            if (error) {
+                console.error('Update failed:', error.message);
+            } else {
+                 setIsDialogOpen(false);
+                console.log('Updated record:', data);
+            }
+        } catch (error) {
+            setError(error instanceof Error ? error.message : "An error occurred");
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        (async () => {
+            const supabase = createClient();
+            const { data: resData, error: errData } = await supabase.from("appointments").select("*").eq('userId', userId)
+                .eq('is_available', true);
+            //console.log({ resData, errData })
+            let appointmentData = resData && resData.map((appointment: any) => {
+                return {
+                    ...appointment,
+                    start: new Date(appointment.start_date),
+                    end: new Date(appointment.end_date)
+                }
+            })
+            setAppointments(appointmentData as Appointment[])
+        })()
+    }, [])
+
+    const handleSelectSlot = (slotInfo: SlotInfo) => {
+        console.log({ slotInfo })
+        setSlotInfo(slotInfo)
+        setIsDialogOpen(true)
+    };
+    const handleSelectEvent = (event: any) => {
+        if (event.is_available) {
+            // Trigger dialog/modal for booking
+            setIsDialogOpen(true)
+            setSelectedAppointment(event)
+            console.log("Booking slot:", event);
+        } else {
+            alert("This slot is already booked.");
+        }
+    };
+    // console.log({userId})
+    let viewsList: any = ["month", "week", "work_week", "day", "agenda"];
+    return (
+        <div className="w-full p-4 max-w-7xl mx-auto">
+            <h1 className="text-2xl font-bold mb-4 text-center">Appointment Booking</h1>
+            <Calendar
+                localizer={localizer}
+                events={appointments}
+                // events={allEvents}
+                defaultView="week"
+                views={viewsList} //{["week", "day"]}
+                selectable
+                //onSelectSlot={handleSelectSlot}
+                onSelectEvent={handleSelectEvent}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: 600 }}
+            />
+            <AppointmentDialog
+                startDateProp={selectedAppointment ? selectedAppointment.start_date : ''}
+                endDateProps={selectedAppointment ? selectedAppointment.end_date : ''}
+                isOpen={isDialogOpen}
+                onClose={() => setIsDialogOpen(false)}
+                onSubmit={handleSubmitUpdate}
+            />
+        </div>
+    );
+};
+
+export default BookingCalendar;
