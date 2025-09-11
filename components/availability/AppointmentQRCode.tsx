@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 
-const getAppointmentURL = (userId: string) => `${window.location.host}/schedule/appointment/${userId}`
+const getAppointmentURL = (userId: string) => `${window.location.host}/appointment/${userId}`
 
 const BookingPopup = ({ userId }: { userId: string }) => {
     const [isOpen, setIsOpen] = useState(false);
