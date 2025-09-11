@@ -1,4 +1,3 @@
-// ErrorMessage.tsx
 import { FC } from "react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 

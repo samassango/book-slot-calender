@@ -7,12 +7,6 @@ import { createClient } from "@/lib/supabase/client";
 import AppointmentDialog from "./AvailabilityDialog";
 import AvailableSlotsTable, { IAppointment } from "./AvailableSlotsTable";
 
-const availableSlots = [
-  "2025-08-11 09:00 - 10:00",
-  "2025-08-11 11:00 - 12:00",
-  "2025-08-12 14:00 - 15:30",
-];
-
 export default function AppointmentFormWithSlots({ user, appointments }: any) {
   const [submittedData, setSubmittedData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

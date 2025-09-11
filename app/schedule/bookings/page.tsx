@@ -2,7 +2,6 @@ import React from 'react';
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
-import AppointmentFormWithSlots from '@/components/availability/AppointmentFormWithSlots';
 import ErrorMessage from '@/components/error-mesage/ErrorMessage';
 import Booking from '@/components/bookings/Booking';
 

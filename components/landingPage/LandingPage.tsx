@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Image from 'next/image';
 
 const LandingPage: React.FC = () => {
     return (
@@ -11,12 +12,11 @@ const LandingPage: React.FC = () => {
             <div className="bg-white bg-opacity-80 min-h-screen">
                 {/* Header with Logo */}
                 <header className="px-6 py-4 flex items-center">
-                    <img src='./images/AppointmentPro.png' alt="Logo" className="h-10 w-10 mr-2" />
+                    <Image src='/images/AppointmentPro.png' alt="Logo" width={50} height={50} className="h-10 w-10 mr-2" />
                     <h1 className="text-xl font-bold text-blue-600">SchedulerPro</h1>
                 </header>
 
                 {/* Main Content */}
-                {/* <main className="flex flex-col md:flex-row items-center justify-between p-16 px-6 md:px-20 py-16"> */}
                 <main className="flex items-center justify-center min-h-[calc(100vh-80px)] px-6 md:px-20">
                     <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl py-16">
                         {/* Left: Description + Buttons */}
@@ -39,8 +39,10 @@ const LandingPage: React.FC = () => {
 
                         {/* Right: Image */}
                         <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
-                            <img
-                                src='./images/web-image.png'
+                            <Image
+                                src='/images/web-image.png'
+                                width={80}
+                                height={80}
                                 alt="Appointment Illustration"
                                 className="w-full max-w-md rounded-lg"
                             />

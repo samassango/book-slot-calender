@@ -25,30 +25,7 @@ interface Appointment {
 }
 
 const initialAppointments: Appointment[] = [
-    {
-        id: 'dddddd-werrerr-ooooo-3456t5',
-        fullname: 'John Doe',
-        description: 'Dental Checkup',
-        start_date: '10:00',
-        end_date: '11:00',
-        status: 'todo',
-    },
-    {
-        id: 'rrrrr-oooooo-pppppp-231234',
-        fullname: 'Jane Smith',
-        description: 'Consultation',
-        start_date: '14:00',
-        end_date: '15:00',
-        status: 'progress',
-    },
-    {
-        id: 'ggggg-oooooo-pppppp-231234',
-        fullname: 'Sizwe Zondo',
-        description: 'Consultation',
-        start_date: '14:00',
-        end_date: '15:00',
-        status: 'done',
-    },
+   
 ];
 
 const statusStyles: Record<Status, string> = {

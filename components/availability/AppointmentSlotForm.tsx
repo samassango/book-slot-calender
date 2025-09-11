@@ -94,12 +94,6 @@ const AppointmentSlotForm: React.FC<IAppointmentSlotForm> = ({ onSubmit, onClose
                             </div>
                         )}
 
-                        {/* <button
-                            type="submit"
-                            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                        >
-                            Create Slot
-                        </button> */}
                         <div className="flex justify-end space-x-2">
                             <button
                                 onClick={onClose}

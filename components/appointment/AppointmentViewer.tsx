@@ -24,24 +24,11 @@ interface IAppointment extends Event {
     contact: string;
     email: string;
     fullname: string;
+    start_date: string;
+    end_date: string;
 }
 
-const sampleAppointments: Event[] = [
-    {
-        title: "Meeting with Sibusiso",
-        start: new Date(2025, 7, 10, 10, 0),
-        end: new Date(2025, 7, 10, 11, 0),
-        allDay: false,
-    },
-    {
-        title: "Design Review",
-        start: new Date(2025, 7, 11, 14, 0),
-        end: new Date(2025, 7, 11, 15, 30),
-        allDay: false,
-    },
-];
-
-export default function AppointmentViewer(props: any) {
+export default function AppointmentViewer(props: { appointments: IAppointment[] }) {
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [appointments, setAppointments] = useState<IAppointment[]>()
 
@@ -53,16 +40,16 @@ export default function AppointmentViewer(props: any) {
 
     useEffect(() => {
         if (props.appointments.length) {
-            setAppointments(props.appointments.map((appointment: any) => {
+            setAppointments(props.appointments.map((appointment: IAppointment) => {
                 return {
                     ...appointment,
                     start: new Date(appointment.start_date),
                     end: new Date(appointment.end_date)
                 }
             }))
-      }
+        }
     }, [props.appointments])
-    console.log({ props, appointments })
+
     return (
         <div className="w-full p-6 max-w-5xl mx-auto">
             <h1 className="text-2xl font-bold mb-4 text-center">Appointments</h1>

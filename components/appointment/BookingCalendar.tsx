@@ -5,8 +5,6 @@ import {
     Calendar,
     dateFnsLocalizer,
     Event,
-    SlotInfo,
-    Views,
 } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns"
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -31,57 +29,11 @@ type Appointment = Event;
 const BookingCalendar = () => {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [slotInfo, setSlotInfo] = useState<SlotInfo>()
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [selectedAppointment, setSelectedAppointment] = useState<any | null>(null)
     const params = useParams()
-    let userId = params.userid
-
-    const availableSlots: Event[] = [
-        {
-            title: "Available",
-            start: new Date(2025, 7, 3, 9, 0),
-            end: new Date(2025, 7, 3, 10, 0),
-            allDay: false,
-        },
-        {
-            title: "Available",
-            start: new Date(2025, 7, 3, 11, 0),
-            end: new Date(2025, 7, 3, 12, 0),
-            allDay: false,
-        },
-        // Add more slots as needed
-    ];
-
-    const allEvents = [...availableSlots, ...appointments];
-
-    const createAppointment = async (inputData: any,) => {
-        const supabase = createClient();
-        // console.log({inputData})
-        try {
-            const { data, error: dataError } = await supabase
-                .from('appointments')
-                .insert([{
-                    fullname: inputData.fullname,
-                    email: inputData.email,
-                    title: inputData.title,
-                    contactno: inputData.contact,
-                    description: inputData.description,
-                    allday: inputData.allDay,
-                    start_date: new Date(inputData.startDate),
-                    end_date: new Date(inputData.endDate),
-                    userId: userId
-                }]);
-            console.log({ data })
-            if (dataError) throw dataError;
-        } catch (error: unknown) {
-            setError(error instanceof Error ? error.message : "An error occurred");
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
+    const userId = params.userid;
   
     const handleSubmitUpdate = async (dataInputs: any) => {
         const supabase = createClient();
@@ -117,8 +69,7 @@ const BookingCalendar = () => {
             const supabase = createClient();
             const { data: resData, error: errData } = await supabase.from("appointments").select("*").eq('userId', userId)
                 .eq('is_available', true);
-            //console.log({ resData, errData })
-            let appointmentData = resData && resData.map((appointment: any) => {
+            const appointmentData = resData && resData.map((appointment: any) => {
                 return {
                     ...appointment,
                     start: new Date(appointment.start_date),
@@ -129,11 +80,6 @@ const BookingCalendar = () => {
         })()
     }, [])
 
-    const handleSelectSlot = (slotInfo: SlotInfo) => {
-        console.log({ slotInfo })
-        setSlotInfo(slotInfo)
-        setIsDialogOpen(true)
-    };
     const handleSelectEvent = (event: any) => {
         if (event.is_available) {
             // Trigger dialog/modal for booking
