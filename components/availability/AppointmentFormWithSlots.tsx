@@ -62,6 +62,7 @@ export default function AppointmentFormWithSlots({ user, appointments }: any) {
     if (error) {
       console.error('Error deleting slot:', error.message);
     } else {
+      await getAppointments()
       console.log(`Slot with ID ${id} deleted successfully.`);
     }
   }
@@ -81,6 +82,7 @@ export default function AppointmentFormWithSlots({ user, appointments }: any) {
           userId: user.sub
         }]);
       console.log({ data })
+      await getAppointments()
       if (dataError) throw dataError;
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
