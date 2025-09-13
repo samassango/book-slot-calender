@@ -34,7 +34,7 @@ const BookingCalendar = () => {
     const [selectedAppointment, setSelectedAppointment] = useState<any | null>(null)
     const params = useParams()
     const userId = params.userid;
-  
+
     const handleSubmitUpdate = async (dataInputs: any) => {
         const supabase = createClient();
         try {
@@ -54,7 +54,7 @@ const BookingCalendar = () => {
             if (error) {
                 console.error('Update failed:', error.message);
             } else {
-                 setIsDialogOpen(false);
+                setIsDialogOpen(false);
                 console.log('Updated record:', data);
             }
         } catch (error) {
@@ -91,23 +91,28 @@ const BookingCalendar = () => {
         }
     };
     // console.log({userId})
-    let viewsList: any = ["month", "week", "work_week", "day", "agenda"];
+    let viewsList: any = ["month", "week", "day", "agenda"];
+
     return (
-        <div className="w-full p-4 max-w-7xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4 text-center">Appointment Booking</h1>
-            <Calendar
-                localizer={localizer}
-                events={appointments}
-                // events={allEvents}
-                defaultView="week"
-                views={viewsList} //{["week", "day"]}
-                selectable
-                //onSelectSlot={handleSelectSlot}
-                onSelectEvent={handleSelectEvent}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 600 }}
-            />
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
+                Appointment Booking
+            </h1>
+
+            <div className="w-full h-[400px] sm:h-[650px] md:h-[700px] lg:h-[750px] xl:h-[800px] overflow-hidden">
+                <Calendar
+                    localizer={localizer}
+                    events={appointments}
+                    defaultView="week"
+                    views={viewsList}
+                    selectable
+                    onSelectEvent={handleSelectEvent}
+                    startAccessor="start"
+                    endAccessor="end"
+                    style={{ height: '70%', width: '100%' }}
+                />
+            </div>
+
             <AppointmentDialog
                 startDateProp={selectedAppointment ? selectedAppointment.start_date : ''}
                 endDateProps={selectedAppointment ? selectedAppointment.end_date : ''}
@@ -116,7 +121,9 @@ const BookingCalendar = () => {
                 onSubmit={handleSubmitUpdate}
             />
         </div>
-    );
+
+    )
+
 };
 
 export default BookingCalendar;

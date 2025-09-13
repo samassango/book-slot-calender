@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import AppointmentViewer from '@/components/appointment/AppointmentViewer';
 import ErrorMessage from '@/components/error-mesage/ErrorMessage';
+import AuthLayout from '@/components/AuthLayout/AuthLayout';
 
 export default async function Appointment() {
     const supabase = await createClient();
@@ -21,8 +22,8 @@ export default async function Appointment() {
     }
     
     return (
-        <div>
+        <AuthLayout>
             <AppointmentViewer appointments={resData} />
-        </div>
+        </AuthLayout>
     );
 }

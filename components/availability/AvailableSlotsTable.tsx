@@ -35,18 +35,18 @@ const AvailableSlotsTable: React.FC<any> = ({ onCreateDialog, onSelectedAppointm
             </div>
 
             {/* Table */}
-            <table className="w-full table-auto border-collapse bg-gray-500 shadow-md border border-gray-800 rounded-md">
-                <thead>
-                    <tr className="bg-gray-400 text-left">
-                        <th className="px-4 py-2 border border-gray-800 rounded-md">Title</th>
-                        <th className="px-4 py-2 border border-gray-800 rounded-md">Start Date</th>
-                        <th className="px-4 py-2 border border-gray-800 rounded-md">End Date</th>
-                        <th className="px-4 py-2 border border-gray-800 rounded-md space-x-2">Actions</th>
+            <table className="w-full table-auto border-collapse bg-gray-500 border border-gray-200 rounded shadow">
+                <thead className="text-white bg-gray-800">
+                    <tr>
+                        <th className="text-left px-4 py-2 border-b">Title</th>
+                        <th className="text-left px-4 py-2 border-b">Start Date</th>
+                        <th className="text-left px-4 py-2 border-b">End Date</th>
+                        <th className="px-4 py-2 border border-gray-800  space-x-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {currentRows && currentRows.map((slot) => (
-                        <tr key={slot.id} className="hover:bg-gray-600">
+                        <tr key={slot.id} className="hover:bg-gray-50">
                             <td className="px-4 py-2 border border-gray-300 rounded-md">{slot.title}</td>
                             <td className="px-4 py-2 border border-gray-300 rounded-md">{slot.start_date}</td>
                             <td className="px-4 py-2 border border-gray-300 rounded-md">{slot.end_date}</td>

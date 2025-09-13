@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import AppointmentFormWithSlots from '@/components/availability/AppointmentFormWithSlots';
 import ErrorMessage from '@/components/error-mesage/ErrorMessage';
+import AuthLayout from '@/components/AuthLayout/AuthLayout';
 
 export default async function Page() {
   const supabase = await createClient();
@@ -24,8 +25,8 @@ export default async function Page() {
   }
 
   return (
-    <>
+    <AuthLayout>
       <AppointmentFormWithSlots user={data.claims} appointments={resAppointments} />
-    </>
+    </AuthLayout>
   );
 }

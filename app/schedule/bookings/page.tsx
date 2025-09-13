@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import ErrorMessage from '@/components/error-mesage/ErrorMessage';
 import Booking from '@/components/bookings/Booking';
+import AuthLayout from '@/components/AuthLayout/AuthLayout';
 
 export default async function Page() {
   const supabase = await createClient();
@@ -14,18 +15,18 @@ export default async function Page() {
   }
   const { claims: { sub } } = data
   const { data: resAppointments, error: errorAppointment } = await supabase
-        .from('appointments')
-        .select('*')
-        .eq('userId', sub)
-        .eq('is_available', false);
+    .from('appointments')
+    .select('*')
+    .eq('userId', sub)
+    .eq('is_available', false);
   console.log({ resAppointments, errorAppointment })
   if (errorAppointment) {
     return <ErrorMessage message={'Error occured while fetching data'} />;
   }
 
   return (
-    <>
+    <AuthLayout>
       <Booking user={data.claims} appointments={resAppointments} />
-    </>
+    </AuthLayout>
   );
 }
