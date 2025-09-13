@@ -16,7 +16,7 @@ export default async function AuthLayout({ children }: any) {
       <NavigationHeader user={user} />
 
       <main className="flex-1 w-full flex justify-center px-4 sm:px-6 md:px-10 py-6">
-        <div className="w-full h-full">
+        <div className="w-full h-full text-blue-600">
           {children}
         </div>
       </main>

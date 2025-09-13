@@ -13,16 +13,16 @@ export const NavigationHeader = ({ user }: any) => {
                 <Image src='/images/AppointmentPro.png' width={50} height={30} alt="Logo" />
                 <span className="text-xl font-bold text-blue-600">SchedulerPro</span>
             </div>
-            <div className="hidden md:flex space-x-6">
+            <div className="hidden md:flex space-x-6 text-gray-800 font-bold">
                 <Link className='p-1' href="/schedule/appointment">
-                    <span className="hover:text-blue-500 mt-2">Appointment</span>
+                    <span className="font-bold hover:text-blue-500 mt-2">Appointment</span>
                 </Link>
                 <Link className='p-1' href="/schedule/availability">
-                    <span className="hover:text-blue-500 mt-2">Availability</span>
+                    <span className="font-bold hover:text-blue-500 mt-2">Availability</span>
                 </Link>
 
                 <Link className='p-1' href="/schedule/bookings">
-                    <span className="hover:text-blue-500 mt-2">Bookings</span>
+                    <span className="font-bold hover:text-blue-500 mt-2">Bookings</span>
                 </Link>
 
                 <div className="flex items-center  gap-4">
@@ -38,17 +38,17 @@ export const NavigationHeader = ({ user }: any) => {
             </button>
         </div>
         {isMenuOpen && (
-            <div className="md:hidden px-4 pb-4 space-y-2">
+            <div className="md:hidden px-4 pb-4 space-y-2 text-gray-800 font-bold">
                 <Link className='p-1' href="/schedule/appointment">
-                    <span className="block hover:text-blue-500">Appointment</span>
+                    <span className="block font-bold hover:text-blue-500">Appointment</span>
                 </Link>
 
                 <Link className='p-1' href="/schedule/availability">
-                    <span className="block hover:text-blue-500">Availability</span>
+                    <span className="block font-bold hover:text-blue-500">Availability</span>
                 </Link>
 
                 <Link className='p-1' href="/schedule/bookings">
-                    <span className="block hover:text-blue-500">Bookings</span>
+                    <span className="block font-bold hover:text-blue-500">Bookings</span>
                 </Link>
 
                 <div className="flex items-center gap-4">
