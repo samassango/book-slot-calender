@@ -110,7 +110,7 @@ export default function AppointmentFormWithSlots({ user, appointments }: any) {
 
   console.log({ user, appointments, appointmentData })
   return (
-    <div className="p-2 max-w-5xl mx-auto">
+    <div className="p-2 max-w-5xl mx-auto pt-16">
       <h2 className="text-base font-bold mb-4 text-center">Create Time slot for Appointment Availability </h2>
       <AvailableSlotsTable 
       onCreateDialog={onCreateDialog} 

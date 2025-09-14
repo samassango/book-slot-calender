@@ -10,7 +10,7 @@ export default function Appointments() {
             style={{ backgroundImage: `url(/images/background.png)` }}
         >
             {/* Navigation */}
-            <nav className="bg-white bg-opacity-90 shadow-md">
+            <nav className='fixed top-0 left-0 w-full z-50 bg-white shadow-md'>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                     <div className="flex items-center space-x-3">
                         <Image src='/images/AppointmentPro.png' width={50} height={30} alt="Logo" />
@@ -20,7 +20,7 @@ export default function Appointments() {
             </nav>
 
             {/* Main Content */}
-            <main className="flex-1 w-full flex items-center justify-center px-4 sm:px-6 md:px-10 py-6">
+            <main className="pt-16 flex-1 w-full flex items-center justify-center px-4 sm:px-6 md:px-10 py-6">
                 <div className="w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl h-[100%]">
                     <BookingCalendar />
                 </div>

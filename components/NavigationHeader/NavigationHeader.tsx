@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export const NavigationHeader = ({ user }: any) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    return (<nav className="bg-white bg-opacity-90 shadow-md">
+    return (<nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md bg-opacity-90">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div className="flex items-center space-x-3">
                 <Image src='/images/AppointmentPro.png' width={50} height={30} alt="Logo" />

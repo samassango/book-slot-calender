@@ -51,7 +51,7 @@ export default function AppointmentViewer(props: { appointments: IAppointment[] 
     }, [props.appointments])
 
     return (
-        <div className="w-full p-6 max-w-5xl mx-auto">
+        <div className="w-full p-6 max-w-5xl mx-auto pt-16">
             <h1 className="text-2xl font-bold mb-4 text-center">Appointments</h1>
             <Calendar
                 localizer={localizer}
