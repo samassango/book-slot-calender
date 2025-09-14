@@ -99,7 +99,7 @@ const BookingCalendar = () => {
                 Appointment Booking
             </h1>
 
-            <div className="w-full h-[500px] sm:h-[650px] md:h-[700px] lg:h-[750px] xl:h-[800px] overflow-hidden">
+            <div className="w-full h-[500px] sm:h-[650px] md:h-[600px] lg:h-[650px] xl:h-[800px] overflow-hidden">
                 <Calendar
                     localizer={localizer}
                     events={appointments}

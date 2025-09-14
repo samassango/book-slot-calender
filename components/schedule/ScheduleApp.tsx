@@ -14,7 +14,7 @@ const ScheduleApp: React.FC<any> = ({ user, appointments }: any) => {
             style={{ backgroundImage: "url('/images/background.png')" }} // Replace with your background image path
         >
             <NavigationHeader user={user} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
-            <main>
+            <main className='pt-16'>
                 <AppointmentBoard appointmentData={appointments} />
             </main>
         </div>
