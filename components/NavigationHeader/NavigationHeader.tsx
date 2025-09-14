@@ -43,7 +43,7 @@ export const NavigationHeader = ({ user }: any) => {
         {isMenuOpen && (
             <div className="md:hidden px-4 pb-4 space-y-2 text-gray-800 font-bold">
                 <Link className='p-1' href="/schedule">
-                    <span className="font-bold hover:text-blue-500 mt-2">Home</span>
+                    <span className="font-bold hover:text-blue-500">Home</span>
                 </Link>
                 <Link className='p-1' href="/schedule/appointment">
                     <span className="block font-bold hover:text-blue-500">Appointment</span>
