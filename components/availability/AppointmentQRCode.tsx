@@ -8,10 +8,11 @@ const BookingPopup = ({ userId }: { userId: string }) => {
     const bookingUrl = getAppointmentURL(userId);
 
     return (
-        <div className="relative">
+        <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="px-4 ml-4 py-2 bg-green-500 hover:bg-green-800 text-white font-medium rounded shadow transition duration-300"
+                // className="px-4 ml-4 py-2 bg-green-500 hover:bg-green-800 text-white font-medium rounded shadow transition duration-300"
+                className='w-full sm:w-auto bg-green-500 text-white px-4 py-2 rounded hover:bg-green-800 transition'
             >
                 Show QR Code
             </button>
@@ -33,7 +34,7 @@ const BookingPopup = ({ userId }: { userId: string }) => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

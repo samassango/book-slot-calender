@@ -21,7 +21,7 @@ export default function Appointments() {
 
             {/* Main Content */}
             <main className="flex-1 w-full flex items-center justify-center px-4 sm:px-6 md:px-10 py-6">
-                <div className="w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl h-[80%]">
+                <div className="w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl h-[100%]">
                     <BookingCalendar />
                 </div>
             </main>
