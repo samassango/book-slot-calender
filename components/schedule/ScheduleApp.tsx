@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import AppointmentBoard from './AppointmentBoard';
 import { NavigationHeader } from '../NavigationHeader/NavigationHeader';
+import TaskBoard from './Taskboard';
 
 
 const ScheduleApp: React.FC<any> = ({ user, appointments }: any) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    console.log({ appointments })
+    console.log({ appointments, user })
     return (
         <div
             className="min-h-screen bg-cover bg-center text-gray-800"
@@ -15,7 +16,7 @@ const ScheduleApp: React.FC<any> = ({ user, appointments }: any) => {
         >
             <NavigationHeader user={user} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
             <main className='pt-16'>
-                <AppointmentBoard appointmentData={appointments} />
+                <AppointmentBoard appointmentData={appointments} user={user}/>
             </main>
         </div>
     );

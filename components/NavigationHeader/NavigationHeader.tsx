@@ -24,10 +24,6 @@ export const NavigationHeader = ({ user }: any) => {
                     <span className="font-bold hover:text-blue-500 mt-2">Availability</span>
                 </Link>
 
-                <Link className='p-1' href="/schedule/bookings">
-                    <span className="font-bold hover:text-blue-500 mt-2">Bookings</span>
-                </Link>
-
                 <div className="flex items-center  gap-4">
                     Hey, {user.email}!
                     <LogoutButton />
@@ -51,10 +47,6 @@ export const NavigationHeader = ({ user }: any) => {
 
                 <Link className='p-1' href="/schedule/availability">
                     <span className="block font-bold hover:text-blue-500">Availability</span>
-                </Link>
-
-                <Link className='p-1' href="/schedule/bookings">
-                    <span className="block font-bold hover:text-blue-500">Bookings</span>
                 </Link>
 
                 <div className="flex items-center gap-4">
