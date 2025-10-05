@@ -34,12 +34,13 @@ function TaskCard({ task }) {
 
     return (
         <div ref={setNodeRef} style={style} {...listeners} {...attributes}
-         className="bg-blue-50 p-3 rounded-md shadow hover:bg-blue-100 transition-colors mb-2">
+         className="border-4 border-solid bg-blue-50 p-3 rounded-md shadow hover:bg-blue-100 transition-colors mb-2">
              <div className="flex justify-between items-start">
                 {/* Left: Description and Name */}
                 <div>
-                    <h3 className="font-bold text-sm">{task.description}</h3>
+                    <h3 className="font-bold text-sm">{task.title}</h3>
                     <p>{task.fullname}</p>
+                    <span>{new Date(task.start_date).toDateString()}</span>
                 </div>
 
                 {/* Right: Start/End Time on Desktop */}

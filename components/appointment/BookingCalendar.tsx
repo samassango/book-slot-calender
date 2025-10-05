@@ -31,6 +31,7 @@ const BookingCalendar = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
     const [selectedAppointment, setSelectedAppointment] = useState<any | null>(null)
     const params = useParams()
     const userId = params.userid;
@@ -54,6 +55,16 @@ const BookingCalendar = () => {
             if (error) {
                 console.error('Update failed:', error.message);
             } else {
+                const { data: resData, error: errData } = await supabase.from("appointments").select("*").eq('userId', userId)
+                    .eq('is_available', true);
+                const appointmentData = resData && resData.map((appointment: any) => {
+                    return {
+                        ...appointment,
+                        start: new Date(appointment.start_date),
+                        end: new Date(appointment.end_date)
+                    }
+                })
+                setAppointments(appointmentData as Appointment[])
                 setIsDialogOpen(false);
                 console.log('Updated record:', data);
             }

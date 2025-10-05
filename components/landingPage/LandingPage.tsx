@@ -41,10 +41,9 @@ const LandingPage: React.FC = () => {
                         <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
                             <Image
                                 src='/images/web-image.png'
-                                width={80}
-                                height={80}
+                                width={1000}
+                                height={1000}
                                 alt="Appointment Illustration"
-                                className="w-full max-w-md rounded-lg"
                             />
                         </div>
                     </div>

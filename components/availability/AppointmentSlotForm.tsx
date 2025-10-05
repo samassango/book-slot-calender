@@ -97,7 +97,7 @@ const AppointmentSlotForm: React.FC<IAppointmentSlotForm> = ({ onSubmit, onClose
                         <div className="flex justify-end space-x-2">
                             <button
                                 onClick={onClose}
-                                className="px-4 py-2 bg-red-600 rounded hover:bg-red-700 transition"
+                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
                             >
                                 Cancel
                             </button>

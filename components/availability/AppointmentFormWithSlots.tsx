@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import AppointmentDialog from "./AvailabilityDialog";
 import AvailableSlotsTable, { IAppointment } from "./AvailableSlotsTable";
+import EditAvailabilityModal from "./EditAvailabilityModal";
 
 export default function AppointmentFormWithSlots({ user, appointments }: any) {
   const [submittedData, setSubmittedData] = useState(null);
@@ -13,6 +14,8 @@ export default function AppointmentFormWithSlots({ user, appointments }: any) {
   const [error, setError] = useState<string | null>(null);
   const [appointmentData, setAppointmentData] = useState<any[] | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [editAppointment, setEditAppointment] = useState<any | null>(null)
+  const [isEditAppointmentDialogOpen, setIsEditAppointmentDialogOpen] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -92,7 +95,7 @@ export default function AppointmentFormWithSlots({ user, appointments }: any) {
   }
 
   const handleDialogSubmit = async (data: any) => {
-    console.log({ submittedData:data })
+    console.log({ submittedData: data })
     await createAppointment(data)
     setIsDialogOpen(false)
   }
@@ -101,28 +104,46 @@ export default function AppointmentFormWithSlots({ user, appointments }: any) {
   }
   const onSelectedAppointment = (appointment: IAppointment) => {
     console.log({ appointment });
-    deleteAppointmentsById(appointment.id).then(_=>_);
+    deleteAppointmentsById(appointment.id).then(_ => _);
   }
 
   const onEditAppointment = (appointment: IAppointment) => {
     console.log({ appointment });
+    setEditAppointment(appointment)
+    setIsEditAppointmentDialogOpen(true)
+
+  }
+  const refreshAppointments = async () => {
+    await getAppointments();
   }
 
-  console.log({ user, appointments, appointmentData })
+  const getSortAppointments = (appointments: any[]) => {
+    if (Array.isArray(appointments))
+      return appointments.sort((a: any, b: any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime())
+    return []
+  }
+  console.log({ user, appointments, appointmentData, appointmentDataSorted: getSortAppointments(appointmentData) })
   return (
     <div className="p-2 max-w-5xl mx-auto pt-16">
       <h2 className="text-base font-bold mb-4 text-center">Create Time slot for Appointment Availability </h2>
-      <AvailableSlotsTable 
-      onCreateDialog={onCreateDialog} 
-      onSelectedAppointment={onSelectedAppointment} 
-      onEditAppointment={onEditAppointment}
-      availableAppointment={appointmentData}
-      userId={user.sub} />
+      <AvailableSlotsTable
+        onCreateDialog={onCreateDialog}
+        onSelectedAppointment={onSelectedAppointment}
+        onEditAppointment={onEditAppointment}
+        availableAppointment={appointmentData}
+        userId={user.sub} />
       <AppointmentDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onSubmit={handleDialogSubmit}
       />
+      {isEditAppointmentDialogOpen && editAppointment && (
+        <EditAvailabilityModal
+          slot={editAppointment}
+          onClose={() => setIsEditAppointmentDialogOpen(false)}
+          onUpdated={refreshAppointments}
+        />
+      )}
 
     </div>
   );
