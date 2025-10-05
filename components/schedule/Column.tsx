@@ -34,7 +34,7 @@ function TaskCard({ task }) {
 
     return (
         <div ref={setNodeRef} style={style} {...listeners} {...attributes}
-         className="border-4 border-solid bg-blue-50 p-3 rounded-md shadow hover:bg-blue-100 transition-colors mb-2">
+         className="border-4 border-solid border-white bg-blue-50 p-3 rounded-md shadow hover:bg-blue-100 transition-colors mb-2">
              <div className="flex justify-between items-start">
                 {/* Left: Description and Name */}
                 <div>

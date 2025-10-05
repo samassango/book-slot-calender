@@ -86,25 +86,25 @@ const AppointmentBoard: React.FC<{ appointmentData: any[] | undefined, user: any
         <div className="p-6 bg-white bg-opacity-50 min-h-screen">
             {/* Summary Cards */}
             <div className="grid text-white grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div className="border-4 border-solid bg-blue-600 p-4 rounded-lg shadow-lg text-center">
+                <div className="border-4 border-solid border-white bg-blue-600 p-4 rounded-lg shadow-lg text-center">
                     <h4 className="text-lg font-semibold">To Do</h4>
                     <p className='text-6xl font-bold'>
                         <CountUp end={getAppointmentsByStatus('todo')} duration={2} separator="," />
                     </p>
                 </div>
-                <div className="border-4 border-solid bg-blue-600 p-4 rounded-lg shadow-lg text-center">
+                <div className="border-4 border-solid border-white bg-blue-600 p-4 rounded-lg shadow-lg text-center">
                     <h4 className="text-lg font-semibold">Done</h4>
                     <p className='text-6xl font-bold'>
                         <CountUp end={getAppointmentsByStatus('done')} duration={2} separator="," />
                     </p>
                 </div>
-                <div className="border-4 border-solid bg-blue-600 p-4 rounded-lg shadow-lg text-center">
+                <div className="border-4 border-solid border-white bg-blue-600 p-4 rounded-lg shadow-lg text-center">
                     <h4 className="text-lg font-semibold">Total</h4>
                     <p className='text-6xl font-bold'>
                         <CountUp end={appointments ? appointments.length : 0} duration={2} separator="," />
                     </p>
                 </div>
-                <div className="border-4 border-solid bg-blue-600 p-4 rounded-lg shadow-lg text-center">
+                <div className="border-4 border-solid border-white bg-blue-600 p-4 rounded-lg shadow-lg text-center">
                     <div ref={qrRef} className="flex items-center flex-col relative mb-4">
                         <QRCodeSVG value={bookingUrl} size={100} className='border-4 border-white' />
                         <div className=" bottom-0 bg-black bg-opacity-20 text-white w-full text-center py-2 text-sm">
