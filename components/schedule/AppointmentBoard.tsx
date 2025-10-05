@@ -114,14 +114,14 @@ const AppointmentBoard: React.FC<{ appointmentData: any[] | undefined, user: any
                     <div className='flex justify-between gap-1'>
                         <button
                             onClick={handleDownload}
-                            className="border-2 border-solid py-2 p-5 w-32 grow bg-green-500 hover:bg-green-600 text-white font-semibold rounded transition duration-300"
+                            className="border-2 border-solid border-white py-2 p-5 w-32 grow bg-green-500 hover:bg-green-600 text-white font-semibold rounded transition duration-300"
                         >
                             Download
                         </button>
 
                         <button
                             onClick={generateImage}
-                            className="border-2 border-solid py-2 p-5 w-32 grow bg-green-500 hover:bg-green-600 text-white font-semibold rounded transition duration-300"
+                            className="border-2 border-solid border-white py-2 p-5 w-32 grow bg-green-500 hover:bg-green-600 text-white font-semibold rounded transition duration-300"
                         >
                             Share
                         </button>
